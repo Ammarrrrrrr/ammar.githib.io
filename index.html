@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ammar · Portfolio</title>
+  <meta name="description" content="Portfolio website for Ammar — Computer Engineering student and developer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/img/favicon.png" />
+</head>
+<body class="theme-auto">
+  <header class="site-header container">
+    <a href="#" class="logo">Ammar<span>.</span></a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌓</button>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-text">
+        <h1>Hi, I'm <span class="accent">Ammar</span> — <span id="typewriter" class="type"></span></h1>
+        <p class="muted">
+          Computer Engineering student @ MSA University (Egypt). ESL learner. I build practical projects and ship them on GitHub.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/Ammarrrrrrr" target="_blank" rel="noopener">GitHub Profile</a>
+          <a class="btn" href="#projects">See Projects</a>
+        </div>
+        <div class="badges">
+          <span>Python</span> <span>SQL</span> <span>VHDL</span> <span>Flutter</span> <span>Git/GitHub</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img src="assets/img/avatar.svg" alt="Developer illustration" />
+      </div>
+    </section>
+
+    <section id="about" class="container card">
+      <h2>About</h2>
+      <p>
+        I'm a hands-on coder who enjoys turning specs into working systems. Recently I worked on a
+        <strong>Flight Management System</strong> using SQL and Windows batch scripting with XAMPP on Windows 11.
+        I also explore <strong>VLSI / digital design</strong> (4-bit adders, CMOS examples) and dabble in <strong>Flutter</strong> for mobile.
+      </p>
+      <p>
+        I deploy with GitHub and GitHub Pages, and I'm improving my technical English as an ESL student.
+      </p>
+    </section>
+
+    <section id="skills" class="container card">
+      <h2>Skills</h2>
+      <ul class="skills">
+        <li><strong>Languages:</strong> Python, SQL, C/C++, VHDL, Verilog (basics), Dart (Flutter)</li>
+        <li><strong>Web & Tools:</strong> HTML/CSS/JS, Git, GitHub, GitHub Pages, XAMPP, Windows, Bash/Batch</li>
+        <li><strong>Interests:</strong> Embedded/VLSI, Algorithms, Backend & data tooling</li>
+      </ul>
+    </section>
+
+    <section id="projects" class="container card">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <div class="filters">
+          <input id="search" type="search" placeholder="Search repositories..." />
+          <select id="sort">
+            <option value="updated">Recently Updated</option>
+            <option value="created">Recently Created</option>
+            <option value="pushed">Recently Pushed</option>
+            <option value="stars">Most Stars</option>
+          </select>
+        </div>
+      </div>
+      <div id="projectsGrid" class="grid"></div>
+      <div id="projectsFallback" class="fallback hidden">
+        <p>Couldn't load repos from GitHub right now. Here are a few highlighted projects:</p>
+        <div class="grid">
+          <article class="card project">
+            <h3>Flight Management System</h3>
+            <p>SQL + batch scripts on XAMPP (Windows 11). Focused on database design and task automation.</p>
+            <a class="btn small" href="https://github.com/Ammarrrrrrr" target="_blank" rel="noopener">See on GitHub</a>
+          </article>
+          <article class="card project">
+            <h3>Digital Design Snippets</h3>
+            <p>VHDL/Verilog experiments (e.g., 4-bit full adder). Great for exam prep and hardware fundamentals.</p>
+            <a class="btn small" href="https://github.com/Ammarrrrrrr" target="_blank" rel="noopener">See on GitHub</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="container card">
+      <h2>Experience & Education</h2>
+      <div class="timeline">
+        <div class="item">
+          <div class="when">2023–Present</div>
+          <div class="what"><strong>Computer Engineering Student</strong> — MSA University, Egypt</div>
+          <div class="desc">Coursework and projects in systems, databases, and digital design.</div>
+        </div>
+        <div class="item">
+          <div class="when">Ongoing</div>
+          <div class="what"><strong>Open-source projects</strong> — GitHub</div>
+          <div class="desc">Exploring Python tooling, SQL databases, and FPGA basics.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container card">
+      <h2>Contact</h2>
+      <div class="contact">
+        <a class="btn" href="mailto:hello@placeholder.email">Email</a>
+        <a class="btn" href="https://github.com/Ammarrrrrrr" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+      <p class="muted small mt">Tip: replace <code>hello@placeholder.email</code> and <code>resume.pdf</code> with your actual details.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <p>© <span id="year"></span> Ammar — Built with vanilla HTML/CSS/JS. Hosted on GitHub Pages.</p>
+  </footer>
+
+  <script>window.PORTFOLIO_CONFIG = { githubUser: "Ammarrrrrrr" };</script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
