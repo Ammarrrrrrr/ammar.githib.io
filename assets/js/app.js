@@ -3,12 +3,14 @@
   const root = document.documentElement;
   const themeToggleButton = document.getElementById('themeBtn');
   const savedTheme = localStorage.getItem('theme');
-  if(savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)){
-    root.classList.add('dark');
-    document.body.classList.add('bg-ink','text-white');
-  } else {
+  
+  // Default to dark mode if no preference is saved
+  if(savedTheme === 'light'){
     root.classList.remove('dark');
+  } else {
+    root.classList.add('dark');
   }
+  
   themeToggleButton && (themeToggleButton.onclick = () => {
     const isDark = root.classList.toggle('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
@@ -40,15 +42,15 @@
 
   function createProjectCard(repo){
     const article = document.createElement('article');
-    article.className = 'rounded-2xl p-5 border border-white/10 bg-white/5 hover:bg-white/10 transition';
+    article.className = 'rounded-2xl p-5 border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition';
     article.setAttribute('role','listitem');
     article.innerHTML = `
       <h3 class="font-semibold text-lg mb-1">${repo.name}</h3>
-      <p class="text-white/70 text-sm mb-2">${repo.description ? repo.description : 'No description provided.'}</p>
-      <p class="text-white/50 text-xs mb-3">★ ${repo.stargazers_count} • Updated ${new Date(repo.updated_at).toLocaleDateString()}</p>
+      <p class="text-black/70 dark:text-white/70 text-sm mb-2">${repo.description ? repo.description : 'No description provided.'}</p>
+      <p class="text-black/50 dark:text-white/50 text-xs mb-3">★ ${repo.stargazers_count} • Updated ${new Date(repo.updated_at).toLocaleDateString()}</p>
       <div class="flex gap-2 flex-wrap">
         <a class="px-3 py-1 rounded-lg bg-accent text-black text-sm" href="${repo.html_url}" target="_blank" rel="noopener">Repository</a>
-        ${repo.homepage ? `<a class=\"px-3 py-1 rounded-lg border border-white/10 text-sm\" href=\"${repo.homepage}\" target=\"_blank\" rel=\"noopener\">Live</a>` : ''}
+        ${repo.homepage ? `<a class=\"px-3 py-1 rounded-lg border border-black/10 dark:border-white/10 text-sm\" href=\"${repo.homepage}\" target=\"_blank\" rel=\"noopener\">Live</a>` : ''}
       </div>
     `;
     return article;
@@ -125,10 +127,10 @@
     navLinks.forEach(a => {
       const isActive = a.getAttribute('href') === `#${id}`;
       if(isActive){
-        a.classList.add('text-white');
+        a.classList.add('text-black', 'dark:text-white');
         a.setAttribute('aria-current','page');
       } else {
-        a.classList.remove('text-white');
+        a.classList.remove('text-black', 'dark:text-white');
         a.removeAttribute('aria-current');
       }
     });
@@ -144,4 +146,25 @@
     },{ rootMargin: '0px 0px -60% 0px', threshold: [0.25,0.5,0.75,1]});
     sections.forEach(sec=> secObserver.observe(sec));
   }
+
+  // Ripple effect for clickable elements
+  function createRipple(event) {
+    const element = event.currentTarget;
+    const rect = element.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    
+    element.style.setProperty('--x', x + 'px');
+    element.style.setProperty('--y', y + 'px');
+    
+    // Remove existing ripple class and re-add to restart animation
+    element.classList.remove('ripple-effect');
+    void element.offsetWidth; // Force reflow
+    element.classList.add('ripple-effect');
+  }
+
+  // Add ripple effect to nav links, skill tags, and hero buttons
+  document.querySelectorAll('.nav-glow, .skill-tag, .hero-btn, .hero-btn-outline').forEach(element => {
+    element.addEventListener('click', createRipple);
+  });
 })();
